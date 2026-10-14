@@ -14,6 +14,40 @@
 > **题目**：基于局部数据几何的 JITL 样本选择与预测可靠性
 > **核实方式**：**Crossref REST API** 逐条核验标题 / 第一作者 / 年份 / 期刊 / 卷期页 / 被引数（出版商注册的权威元数据，非搜索摘要推测），并实测链接可达性
 > **核实日期**：2026-10-12
+> **⬆️ 2026-10-13 更新**：课题详情已公布 → 新增**精确检索关键词**（见下）
+
+---
+
+## 🆕 题目定稿后的检索关键词 ⭐
+
+**课题系统全称**：基于局部数据几何的 JITL 样本选择与预测可靠性研究
+
+课题简介点名的技术概念（**优先用这些词检索**）：
+
+| 中文 | 英文关键词 |
+|---|---|
+| 局部数据几何 | local data geometry |
+| 几何感知样本选择 | **geometry-aware sample selection** |
+| 单侧分布 | one-sided / asymmetric distribution |
+| 密度不足 | insufficient density / sparse neighborhood |
+| ⭐ **方向退化** | **direction degeneration / ill-conditioned local covariance** |
+| 方向不对称度 | directional asymmetry |
+| 查询信息量 | query information content |
+| 预测可靠性 | prediction reliability |
+
+**推荐检索式（直接复制）**
+
+```
+geometry-aware sample selection soft sensor
+local data geometry just-in-time learning
+local covariance ill-conditioned regression
+directional distribution nearest neighbor
+prediction reliability just-in-time learning
+sample selection bias local regression
+```
+
+> 💡 **检索重点**：找**「局部协方差矩阵」和「局部 PCA」**相关的文献 —— 那是本题的数学核心。
+> 现有的 2.5 / 2.6 / 2.9 三条已在这条线上（流形正则、马氏距离），**用新关键词再补一轮**。
 
 | 标记 | 含义 |
 |:--:|---|
