@@ -4,3 +4,8 @@ __pycache__/
 .venv/
 env/
 .DS_Store
+data/*.xlsx
+
+# 未发表数据、分析图、报告：一律不进公开仓库
+figures/
+reports/
