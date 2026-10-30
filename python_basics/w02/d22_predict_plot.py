@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from aa_utils import load_data, add_descriptors
+from aa_utils import load_data, add_descriptors, loo_predict, rmse
 
 plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
 plt.rcParams['axes.unicode_minus'] = False
@@ -13,19 +13,8 @@ n = len(y)
 X = cyt[['mw_da', 'hydrophobicity_kd']].values
 h = cyt['hydrophobicity_kd'].values
 
-def loo_predict(Xf, k=3):
-    preds = np.zeros(n)
-    for i in range(n):
-        mask = np.arange(n) != i
-        d = np.sqrt(((Xf[mask] - Xf[i])**2).sum(axis=1))
-        preds[i] = y[mask][np.argsort(d)[:k]].mean()
-    return preds
-
-def rmse(p):
-    return np.sqrt(((p - y)**2).mean())
-
-p1 = loo_predict(h.reshape(-1, 1))
-p2 = loo_predict(X)
+p1 = loo_predict(h.reshape(-1, 1), y)
+p2 = loo_predict(X, y)
 
 fig, axes = plt.subplots(1, 2, figsize=(11, 5))
 lo, hi = 0, 0.036
@@ -41,7 +30,7 @@ for ax, pred, title in [(axes[0], p1, '疏水性（1 个特征）'),
     ax.set_ylim(lo, hi)
     ax.set_xlabel('真实 kcat/Km', fontsize=11)
     ax.set_ylabel('预测 kcat/Km', fontsize=11)
-    ax.set_title(f'{title}\nRMSE = {rmse(pred):.6f}', fontsize=11)
+    ax.set_title(f'{title}\nRMSE = {rmse(pred, y):.6f}', fontsize=11)
     ax.grid(alpha=0.25)
 
 plt.tight_layout()
