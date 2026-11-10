@@ -36,6 +36,10 @@ EMB_MAX_TOKENS = 256
 
 
 # ---------------- LLM：DeepSeek ----------------
+# 累计用量，跑完能算钱
+STATS = {"calls": 0, "in": 0, "out": 0}
+
+
 async def deepseek_complete(prompt, system_prompt=None, history_messages=None, **kwargs):
     messages = []
     if system_prompt:
@@ -54,7 +58,12 @@ async def deepseek_complete(prompt, system_prompt=None, history_messages=None, *
             r = requests.post(API_URL, json=payload, headers=headers, timeout=180)
             if r.status_code != 200:
                 raise RuntimeError(f"HTTP {r.status_code}: {r.text[:200]}")
-            return r.json()["choices"][0]["message"]["content"]
+            data = r.json()
+            usage = data.get("usage") or {}
+            STATS["calls"] += 1
+            STATS["in"] += usage.get("prompt_tokens", 0)
+            STATS["out"] += usage.get("completion_tokens", 0)
+            return data["choices"][0]["message"]["content"]
         except Exception as e:
             if attempt == 2:
                 raise

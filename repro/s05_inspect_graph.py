@@ -61,7 +61,7 @@ def main():
     labels = {n: n for n, _ in deg[:TOPN_LABELS]}
     nx.draw_networkx_labels(sub, pos, labels=labels, ax=ax, font_size=9)
 
-    ax.set_title(f"Knowledge graph built from 1 paper — {g.number_of_nodes()} entities, "
+    ax.set_title(f"Knowledge graph of the corpus — {g.number_of_nodes()} entities, "
                  f"{g.number_of_edges()} relations\n"
                  f"(top {TOPN_NODES} by degree, colour = {len(comms)} communities)",
                  fontsize=13)
