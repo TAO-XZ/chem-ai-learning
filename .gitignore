@@ -1,6 +1,6 @@
 __pycache__/
 *.py[cod]
-.ipynb_checkpoints/
+*.ipynb_checkpoints/
 .venv/
 env/
 .DS_Store
@@ -9,5 +9,12 @@ data/*.xlsx
 # 未发表数据、分析图、报告：一律不进公开仓库
 figures/
 reports/
-literature/*.pdf
 papers/
+
+# 文献 PDF：所有子目录都不进仓库（此前只挡了 literature/*.pdf，
+# 导致 literature/中文/*.pdf 等 20 篇会被误提交，故改为递归匹配）
+literature/**/*.pdf
+literature/*.pdf
+
+# 导师提供的课题组资料、工业数据（DMTO 等）：不进公开仓库
+JITL/
